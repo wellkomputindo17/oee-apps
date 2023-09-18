@@ -1,0 +1,435 @@
+@font-face {
+    font-family: "Font-Digital";
+    src: url('../fonts/digital-7.ttf');
+}
+
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
+}
+
+.text-control {
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #212529;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border-radius: .25rem;
+    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out
+}
+
+.text-form-label {
+    margin-bottom: 0;
+    font-size: inherit;
+    line-height: 1.5
+}
+
+.small-text {
+    margin-top: .25rem;
+    font-size: .675em;
+    color: #fff
+}
+
+.page-header {
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    background-size: cover;
+    background-position: 50%;
+}
+
+.page-header .container {
+    z-index: 1;
+}
+
+
+.btn-lg,
+.btn-group-lg>.btn {
+    padding: 0.875rem 4rem;
+    font-size: 0.875rem;
+    border-radius: 0.5rem;
+    font-weight: bold;
+}
+
+.btn-sm,
+.btn-group-sm>.btn {
+    padding: 0.5rem 2rem;
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+}
+
+.text-site-oee {
+    display: inline-block;
+    font-size: .75em;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem
+}
+
+/* Animasi waves */
+.waves {
+    position: relative;
+    width: 100%;
+    height: 16vh;
+    margin-bottom: -7px;
+    /*Fix for safari gap*/
+    min-height: 100px;
+    max-height: 150px;
+}
+
+.waves.waves-sm {
+    height: 50px;
+    min-height: 50px;
+}
+
+.waves.no-animation .moving-waves>use {
+    animation: none;
+}
+
+.wave-rotate {
+    transform: rotate(180deg);
+}
+
+/* Animation for the waves */
+.moving-waves>use {
+    animation: move-forever 40s cubic-bezier(0.55, 0.5, 0.45, 0.5) infinite;
+}
+
+.moving-waves>use:nth-child(1) {
+    animation-delay: -2s;
+    animation-duration: 11s;
+}
+
+.moving-waves>use:nth-child(2) {
+    animation-delay: -4s;
+    animation-duration: 13s;
+}
+
+.moving-waves>use:nth-child(3) {
+    animation-delay: -3s;
+    animation-duration: 15s;
+}
+
+.moving-waves>use:nth-child(4) {
+    animation-delay: -4s;
+    animation-duration: 20s;
+}
+
+.moving-waves>use:nth-child(5) {
+    animation-delay: -4s;
+    animation-duration: 25s;
+}
+
+.moving-waves>use:nth-child(6) {
+    animation-delay: -3s;
+    animation-duration: 30s;
+}
+
+@keyframes move-forever {
+    0% {
+        transform: translate3d(-90px, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(85px, 0, 0);
+    }
+}
+
+/*Shrinking for mobile*/
+@media (max-width: 767.98px) {
+    .waves {
+        height: 40px;
+        min-height: 40px;
+    }
+
+    hr.horizontal {
+        background-color: transparent;
+    }
+
+    hr.horizontal:not(.dark) {
+        background-image: linear-gradient(to right, rgba(255, 255, 255, 0), white, rgba(255, 255, 255, 0));
+    }
+
+    hr.horizontal.vertical {
+        transform: rotate(90deg);
+    }
+
+    hr.horizontal.dark {
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0));
+    }
+}
+
+.overflow-visible {
+    overflow: visible !important;
+}
+
+.popover .popover-header {
+    font-weight: 600;
+}
+
+.bg-cover {
+    background-size: cover;
+}
+
+.overflow-x-hidden {
+    overflow-x: hidden;
+}
+
+.overflow-y-hidden {
+    overflow-y: hidden;
+}
+
+.overflow-x-scroll {
+    overflow-x: scroll;
+}
+
+.overflow-y-scroll {
+    overflow-y: scroll;
+}
+
+.mask {
+    position: absolute;
+    background-size: cover;
+    background-position: center center;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.8;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.transform-translate-50 {
+    transform: translate(0, -50%);
+}
+
+@media (min-width: 992px) {
+    .virtual-reality .sidenav {
+        margin-top: 1.5rem;
+        animation-name: fadeInBottom;
+        animation-fill-mode: both;
+        animation-duration: 1.5s;
+        transform: scale(0.6);
+        background: #fff;
+        left: 18% !important;
+        position: absolute;
+    }
+}
+
+/* Chart Gauge Percent */
+.gauge {
+    width: 100%;
+    max-width: 250px;
+    font-family: "Roboto", sans-serif;
+    font-size: 32px;
+    color: #004033;
+}
+
+.gauge__body {
+    width: 100%;
+    height: 0;
+    padding-bottom: 50%;
+    background: #b4c0be;
+    position: relative;
+    border-top-left-radius: 100% 200%;
+    border-top-right-radius: 100% 200%;
+    overflow: hidden;
+}
+
+.gauge__fill {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: inherit;
+    height: 100%;
+    background: #0D6EFD;
+    transform-origin: center top;
+    transform: rotate(0turn);
+    transition: transform 0.2s ease-out;
+}
+
+.gauge__cover {
+    width: 75%;
+    height: 150%;
+    color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    /* Text */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 25%;
+    box-sizing: border-box;
+}
+
+/* Charts speed */
+/* Regular Styles */
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-stretch: normal;
+    src: url(https://fonts.gstatic.com/s/opensans/v35/memSYaGs126MiZpBA-UvWbX2vVnXBbObj2OVZyOOSr4dVJWUgsjZ0B4gaVc.ttf) format('truetype');
+}
+
+body {
+    font-family: "Open Sans", sans-serif;
+    color: #4e555f;
+    font-size: 14px;
+}
+
+/* Bar Delays Animation Function */
+/* Chart Styles */
+.chart-wrap {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding-top: 10px;
+    padding-right: 40px;
+    border: 1px solid #eeeeee;
+}
+
+.chart-wrap .chart-title {
+    margin-bottom: 10px;
+    font-size: 16px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.chart-wrap .row {
+    position: relative;
+    height: 26px;
+    margin-bottom: 15px;
+}
+
+.chart-wrap .bar-wrap {
+    position: relative;
+    background: #fff;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.chart-wrap .bar-wrap .bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background: #5470C6;
+    transition: all 1s;
+    transform: translateX(-100%);
+}
+
+.chart-wrap .bar-wrap .bar.in {
+    transform: translateX(0%);
+}
+
+.chart-wrap .row:nth-of-type(1) .bar {
+    transition: 1s 400ms;
+}
+
+.chart-wrap .row:nth-of-type(2) .bar {
+    transition: 1s 600ms;
+}
+
+.chart-wrap .row:nth-of-type(3) .bar {
+    transition: 1s 800ms;
+}
+
+.chart-wrap .row:nth-of-type(4) .bar {
+    transition: 1s 1000ms;
+}
+
+.chart-wrap .row:nth-of-type(5) .bar {
+    transition: 1s 1200ms;
+}
+
+.chart-wrap .row:nth-of-type(6) .bar {
+    transition: 1s 1400ms;
+}
+
+.chart-wrap .row:nth-of-type(7) .bar {
+    transition: 1s 1600ms;
+}
+
+.chart-wrap .label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    padding-left: 10px;
+    text-align: left;
+    font-size: 12px;
+    line-height: 26px;
+    text-transform: uppercase;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.chart-wrap .number {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 30px;
+    padding-right: 10px;
+    font-size: 15px;
+    line-height: 26px;
+    font-weight: bold;
+    text-align: right;
+    z-index: 10;
+}
+
+@media screen and (min-width: 800px) {
+    .chart-wrap .row {
+        padding: 0 40px 0 150px;
+    }
+
+    .chart-wrap .label {
+        text-align: right;
+        padding-left: 0;
+    }
+
+    .chart-wrap .number {
+        text-align: left;
+        padding-left: 0;
+        padding-right: 0;
+        margin-right: 0;
+        margin-left: 0;
+    }
+}

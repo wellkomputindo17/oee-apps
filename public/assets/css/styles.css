@@ -1,0 +1,277 @@
+html {
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+::-webkit-scrollbar {
+    width: 0;
+    /* Remove scrollbar space */
+    background: transparent;
+    /* Optional: just make scrollbar invisible */
+}
+
+/* my table  */
+.table-pagination {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+}
+
+.my-tableview td.title-on-first {
+    width: 25% !important;
+}
+
+.my-tableview td.item-of-table {
+    width: 5% !important
+}
+
+.my-tableview td.item-of-table-lg {
+    width: 30% !important;
+}
+
+table.my-tableview {
+    border-spacing: 0;
+}
+
+.my-tableview {
+    width: 100%;
+}
+
+.my-tableview thead tr th {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.my-tableview thead tr th,
+.my-tableview tfoot tr th {
+    padding: 6px 10px 6px;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.my-tableview thead {
+    background-color: var(--primary);
+    color: #fff;
+}
+
+.dataTables_wrapper .dataTables_paginate .page-item.active .page-link {
+    background: var(--primary) !important;
+}
+
+
+.my-tableview thead tr th {
+    text-transform: capitalize;
+}
+
+/* .my-tableview tbody tr td {
+    text-transform: uppercase;
+} */
+
+table.my-tableview tr th,
+table.my-tableview tr td {
+    border: 0.5px solid rgba(34, 32, 32, 0.65) !important;
+}
+
+
+.my-tableview tbody td {
+    padding-top: 0px !important;
+    padding-bottom: 2px !important;
+    padding-left: 6px !important;
+    padding-right: 0px !important;
+    font-size: 12px;
+    font-weight: 600;
+    white-space: nowrap;
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* .my-tableview.my-table-striped tbody tr:nth-of-type(odd) {
+    background-color: #d2edf9;
+} */
+
+.my-tableview.my-table-striped tbody tr:nth-of-type(odd):hover,
+.my-tableview.my-table-striped tbody tr:nth-of-type(even):hover {
+    background-color: #ebe1e1;
+}
+
+.dataTables_scrollBody thead tr {
+    visibility: collapse;
+}
+
+.highlight {
+    background-color: #ff9999 !important;
+    /* color: var(--natural-dark) !important; */
+}
+
+.my-tableview.td-first-title tbody td:first-child {
+    text-transform: capitalize;
+    width: 15%;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.my-tableview.td-first-title tbody td:nth-child(2) {
+    text-transform: capitalize;
+    width: 1%;
+}
+
+/* TREEVIEW */
+/* @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css"; */
+
+ul.tree {
+    margin: 0;
+    padding: 2px 20px;
+}
+
+ul.tree li {
+    list-style: none;
+    margin-left: -15px;
+    position: relative;
+}
+
+ul.tree li input {
+    cursor: pointer;
+    height: 1em;
+    left: 0;
+    margin-left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 2em;
+    z-index: 2;
+}
+
+ul.tree li input:checked+ul {
+    height: auto;
+    margin: 0px 0px 0px -19px;
+}
+
+ul.tree li input:checked+ul:before {
+    content: "\f068";
+    font-family: Fontawesome;
+    font-size: 15px;
+    left: 0;
+    margin-right: 5px;
+    position: absolute;
+    top: 0;
+}
+
+ul.tree li input:checked+ul>li {
+    display: block;
+    left: -3px;
+    margin: 0 0 3px;
+}
+
+ul.tree li input:checked+ul>li last-child {
+    margin: 0 0 0.063em;
+}
+
+ul.tree li input+ul {
+    padding: 0 0 0 39px;
+}
+
+ul.tree li input+ul:before {
+    content: "\f067";
+    font-family: Fontawesome;
+    font-size: 15px;
+    left: 0;
+    margin-right: 5px;
+    position: absolute;
+    top: 0;
+}
+
+ul.tree li input+ul>li {
+    display: none;
+    margin-left: -10px;
+    padding-left: 1px;
+}
+
+ul.tree li label {
+    cursor: pointer;
+    margin-bottom: 0;
+    margin-left: 17px;
+}
+
+ul.tree>li {
+    margin-left: -1px !important;
+}
+
+ul.tree>li a {
+    color: #606061;
+    display: block;
+    text-decoration: none;
+}
+
+ul.tree>li a:before {
+    content: "";
+    display: block;
+    float: left;
+    font-family: Fontawesome;
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+ul.tree>li>a:before {
+    content: "\f0c9";
+    display: block;
+    float: left;
+    font-family: Fontawesome;
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+ul.tree>li>a>label {
+    margin-left: 0;
+}
+
+ul.tree>li>ul>li>a>label:before,
+ul.tree>li>ul>li>ul>li>a>label:before {
+    content: "\f0c9";
+    display: block;
+    position: absolute;
+    font-family: Fontawesome;
+    font-size: 15px;
+    margin-right: 5px;
+    left: 0px;
+}
+
+.box {
+    height: 12px;
+    width: 20px;
+}
+
+.box--red {
+    background-color: #e74a3b;
+}
+
+.box--yellow {
+    background-color: #f6c23e;
+}
+
+.box--green {
+    background-color: #1cc88a;
+}
+
+.box--dark {
+    background-color: #5a5c69;
+}
+
+.ajax-loader {
+    visibility: hidden;
+    /* background-color: rgba(255, 255, 255, 0.7); */
+    position: absolute;
+    z-index: +100 !important;
+    width: 100%;
+    height: 100%;
+}
+
+.ajax-loader img {
+    position: fixed;
+    margin: auto;
+    width: 10%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
