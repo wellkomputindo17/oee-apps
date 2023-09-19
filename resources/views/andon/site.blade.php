@@ -582,14 +582,13 @@
 
 
                     } else if (res[i].msg == 'success' && res[i].code == 'mesin_perbaikan') {
-                        console.log(res[i].status);
                         let from = new Date(dmyToDate(res[i].time));
                         let diffSecs = Math.abs((new Date().getTime() - from.getTime()) /
                             1000);
                         let live_time = secondsToDhms(diffSecs);
                         // }
                         $(`#line-${res[i].mesin_id} .nama-mesin`).html(`${res[i].nama_mesin}`);
-                        $(`#line-${res[i].mesin_id} .status-mesin`).html(`${res[i].status}`);
+                        $(`#line-${res[i].mesin_id} .status-mesin`).html("Maintenance");
                         $(`#line-${res[i].mesin_id} .time-line`).html(`${live_time}`);
 
                         $(`#line-${res[i].mesin_id} #operator`).val(`${res[i].operator}`);
@@ -600,7 +599,6 @@
                         $(`#line-${res[i].mesin_id} #target`).val(`0`);
                         $(`#line-${res[i].mesin_id} #actual`).val(`0`);
 
-                        $(`#line-${res[i].mesin_id} .status-mesin`).html("-");
                         $(`#line-${res[i].mesin_id}`).removeClass();
                         $(`#line-${res[i].mesin_id}`).addClass('card h-100 bg-warning text-white');
                         $(`#line-${res[i].mesin_id} #do-number`).removeClass();
