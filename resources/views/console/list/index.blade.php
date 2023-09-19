@@ -28,7 +28,7 @@
                                             <label for="no_do">DO </label>
                                             <input type="hidden" name="do_name" value="{{ $do_name }}">
                                             <select class="do-select" name="no_do">
-                                                @if ($no_do != 'null')
+                                                @if ($no_do != '0')
                                                     <option value="{{ $no_do }}">{{ $do_name }}</option>
                                                 @else
                                                     <option value=""></option>
