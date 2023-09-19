@@ -222,18 +222,11 @@
                                     return;
                                 });
                                 return;
+                            } else if (res[i].code == 'error') {
+                                console.log(res[i].desc);
+                                return;
                             } else {
-                                Swal.fire({
-                                    icon: 'warning',
-                                    title: 'Oops...',
-                                    text: res[i].desc,
-                                }).then(function() {
-                                    $('.my-table').DataTable().ajax
-                                        .reload();
-                                    $('.my-modal').modal(
-                                        'hide');
-                                    return;
-                                });
+                                console.log(res[i].desc);
                                 return;
                             }
 

@@ -455,7 +455,90 @@
             channel.listen('OeeEvent', function(data) {
                 let res = data.message;
                 for (let i = 0; i < res.length; i++) {
-                    if (res[i].msg == 'success' && res[i].code != 'mesin_perbaikan') {
+                    if (res[i].msg == 'success' && res[i].code == 'error') {
+                        console.log(res[i].desc);
+                        return;
+                    } else if (res[i].msg == 'success' && res[i].code == 'mesin_perbaikan') {
+                        let from = new Date(dmyToDate(res[i].time));
+                        let diffSecs = Math.abs((new Date().getTime() - from.getTime()) /
+                            1000);
+                        let live_time = secondsToDhms(diffSecs);
+                        // }
+                        $(`#line-${res[i].mesin_id} .nama-mesin`).html(`${res[i].nama_mesin}`);
+                        if (res[i].status == 'perbaikan') {
+                            $(`#line-${res[i].mesin_id} .status-mesin`).html(
+                                `Maintenance`);
+                        } else {
+                            $(`#line-${res[i].mesin_id} .status-mesin`).html(
+                                `-`);
+                        }
+
+                        gaugeDataSimple[0].value = 0;
+                        chartSimple(res[i].mesin_id, gaugeDataSimple);
+
+                        if (res[i].status == 'Finish') {
+                            $(`#line-${res[i].mesin_id} .status-mesin`).html("Finish");
+                            $(`#line-${res[i].mesin_id}`).removeClass();
+                            $(`#line-${res[i].mesin_id}`).addClass('card h-100 bg-primary text-white');
+                            $(`#line-${res[i].mesin_id} #do-number`).removeClass();
+                            $(`#line-${res[i].mesin_id} #do-number`).addClass(
+                                'text-control bg-primary text-white');
+                            $(`#line-${res[i].mesin_id} #header-card`).removeClass();
+                            $(`#line-${res[i].mesin_id} #header-card`).addClass(
+                                'card-header bg-primary text-white');
+                            $(`#line-${res[i].mesin_id} #cycle-time`).removeClass();
+                            $(`#line-${res[i].mesin_id} #cycle-time`).addClass(
+                                'text-control bg-primary text-white');
+                            $(`#line-${res[i].mesin_id} #ng`).removeClass();
+                            $(`#line-${res[i].mesin_id} #ng`).addClass(
+                                'text-control bg-primary text-white');
+                            $(`#line-${res[i].mesin_id} #operator`).removeClass();
+                            $(`#line-${res[i].mesin_id} #operator`).addClass(
+                                'text-control bg-primary text-white');
+                            $(`#line-${res[i].mesin_id} #target`).removeClass();
+                            $(`#line-${res[i].mesin_id} #target`).addClass(
+                                'text-control bg-primary text-white');
+                            $(`#line-${res[i].mesin_id} #actual`).removeClass();
+                            $(`#line-${res[i].mesin_id} #actual`).addClass(
+                                'text-control bg-primary text-white');
+                        } else {
+                            $(`#line-${res[i].mesin_id} .time-line`).html(`${live_time}`);
+
+                            $(`#line-${res[i].mesin_id} #operator`).val(`${res[i].operator}`);
+
+                            $(`#line-${res[i].mesin_id} #do-number`).val(`0`);
+                            $(`#line-${res[i].mesin_id} #cycle-time`).val(`0`);
+                            $(`#line-${res[i].mesin_id} #ng`).val(`0`);
+                            $(`#line-${res[i].mesin_id} #target`).val(`0`);
+                            $(`#line-${res[i].mesin_id} #actual`).val(`0`);
+
+                            $(`#line-${res[i].mesin_id}`).removeClass();
+                            $(`#line-${res[i].mesin_id}`).addClass('card h-100 bg-warning text-white');
+                            $(`#line-${res[i].mesin_id} #do-number`).removeClass();
+                            $(`#line-${res[i].mesin_id} #do-number`).addClass(
+                                'text-control bg-warning text-white');
+                            $(`#line-${res[i].mesin_id} #header-card`).removeClass();
+                            $(`#line-${res[i].mesin_id} #header-card`).addClass(
+                                'card-header bg-warning text-white');
+                            $(`#line-${res[i].mesin_id} #cycle-time`).removeClass();
+                            $(`#line-${res[i].mesin_id} #cycle-time`).addClass(
+                                'text-control bg-warning text-white');
+                            $(`#line-${res[i].mesin_id} #ng`).removeClass();
+                            $(`#line-${res[i].mesin_id} #ng`).addClass(
+                                'text-control bg-warning text-white');
+                            $(`#line-${res[i].mesin_id} #operator`).removeClass();
+                            $(`#line-${res[i].mesin_id} #operator`).addClass(
+                                'text-control bg-warning text-white');
+                            $(`#line-${res[i].mesin_id} #target`).removeClass();
+                            $(`#line-${res[i].mesin_id} #target`).addClass(
+                                'text-control bg-warning text-white');
+                            $(`#line-${res[i].mesin_id} #actual`).removeClass();
+                            $(`#line-${res[i].mesin_id} #actual`).addClass(
+                                'text-control bg-warning text-white');
+                        }
+
+                    } else if (res[i].msg == 'success' && (res[i].code != 'mesin_perbaikan' || res[i]
+                            .code != 'error')) {
                         let from = new Date(dmyToDate(res[i].time));
                         let diffSecs = Math.abs((new Date().getTime() - from.getTime()) /
                             1000);
@@ -580,95 +663,17 @@
                         }
 
 
-                    } else if (res[i].msg == 'success' && res[i].code == 'mesin_perbaikan') {
-                        let from = new Date(dmyToDate(res[i].time));
-                        let diffSecs = Math.abs((new Date().getTime() - from.getTime()) /
-                            1000);
-                        let live_time = secondsToDhms(diffSecs);
-                        // }
-                        $(`#line-${res[i].mesin_id} .nama-mesin`).html(`${res[i].nama_mesin}`);
-                        if (res[i].status == 'perbaikan') {
-                            $(`#line-${res[i].mesin_id} .status-mesin`).html(
-                                `Maintenance`);
-                        } else {
-                            $(`#line-${res[i].mesin_id} .status-mesin`).html(
-                                `-`);
-                        }
-
-                        gaugeDataSimple[0].value = 0;
-                        chartSimple(res[i].mesin_id, gaugeDataSimple);
-
-                        if (res[i].status == 'Finish') {
-                            $(`#line-${res[i].mesin_id} .status-mesin`).html("Finish");
-                            $(`#line-${res[i].mesin_id}`).removeClass();
-                            $(`#line-${res[i].mesin_id}`).addClass('card h-100 bg-primary text-white');
-                            $(`#line-${res[i].mesin_id} #do-number`).removeClass();
-                            $(`#line-${res[i].mesin_id} #do-number`).addClass(
-                                'text-control bg-primary text-white');
-                            $(`#line-${res[i].mesin_id} #header-card`).removeClass();
-                            $(`#line-${res[i].mesin_id} #header-card`).addClass(
-                                'card-header bg-primary text-white');
-                            $(`#line-${res[i].mesin_id} #cycle-time`).removeClass();
-                            $(`#line-${res[i].mesin_id} #cycle-time`).addClass(
-                                'text-control bg-primary text-white');
-                            $(`#line-${res[i].mesin_id} #ng`).removeClass();
-                            $(`#line-${res[i].mesin_id} #ng`).addClass(
-                                'text-control bg-primary text-white');
-                            $(`#line-${res[i].mesin_id} #operator`).removeClass();
-                            $(`#line-${res[i].mesin_id} #operator`).addClass(
-                                'text-control bg-primary text-white');
-                            $(`#line-${res[i].mesin_id} #target`).removeClass();
-                            $(`#line-${res[i].mesin_id} #target`).addClass(
-                                'text-control bg-primary text-white');
-                            $(`#line-${res[i].mesin_id} #actual`).removeClass();
-                            $(`#line-${res[i].mesin_id} #actual`).addClass(
-                                'text-control bg-primary text-white');
-                        } else {
-                            $(`#line-${res[i].mesin_id} .time-line`).html(`${live_time}`);
-
-                            $(`#line-${res[i].mesin_id} #operator`).val(`${res[i].operator}`);
-
-                            $(`#line-${res[i].mesin_id} #do-number`).val(`0`);
-                            $(`#line-${res[i].mesin_id} #cycle-time`).val(`0`);
-                            $(`#line-${res[i].mesin_id} #ng`).val(`0`);
-                            $(`#line-${res[i].mesin_id} #target`).val(`0`);
-                            $(`#line-${res[i].mesin_id} #actual`).val(`0`);
-
-                            $(`#line-${res[i].mesin_id}`).removeClass();
-                            $(`#line-${res[i].mesin_id}`).addClass('card h-100 bg-warning text-white');
-                            $(`#line-${res[i].mesin_id} #do-number`).removeClass();
-                            $(`#line-${res[i].mesin_id} #do-number`).addClass(
-                                'text-control bg-warning text-white');
-                            $(`#line-${res[i].mesin_id} #header-card`).removeClass();
-                            $(`#line-${res[i].mesin_id} #header-card`).addClass(
-                                'card-header bg-warning text-white');
-                            $(`#line-${res[i].mesin_id} #cycle-time`).removeClass();
-                            $(`#line-${res[i].mesin_id} #cycle-time`).addClass(
-                                'text-control bg-warning text-white');
-                            $(`#line-${res[i].mesin_id} #ng`).removeClass();
-                            $(`#line-${res[i].mesin_id} #ng`).addClass(
-                                'text-control bg-warning text-white');
-                            $(`#line-${res[i].mesin_id} #operator`).removeClass();
-                            $(`#line-${res[i].mesin_id} #operator`).addClass(
-                                'text-control bg-warning text-white');
-                            $(`#line-${res[i].mesin_id} #target`).removeClass();
-                            $(`#line-${res[i].mesin_id} #target`).addClass(
-                                'text-control bg-warning text-white');
-                            $(`#line-${res[i].mesin_id} #actual`).removeClass();
-                            $(`#line-${res[i].mesin_id} #actual`).addClass(
-                                'text-control bg-warning text-white');
-                        }
-
                     } else {
-                        Swal.fire({
-                            icon: 'warning',
-                            title: 'Oops...',
-                            text: res[i].desc,
-                        }).then(function() {
-                            $('.my-modal').modal(
-                                'hide');
-                            return;
-                        });
+                        // Swal.fire({
+                        //     icon: 'warning',
+                        //     title: 'Oops...',
+                        //     text: res[i].desc,
+                        // }).then(function() {
+                        //     $('.my-modal').modal(
+                        //         'hide');
+                        //     return;
+                        // });
+                        console.log(res[i].desc);
                         return;
                     }
                 }
