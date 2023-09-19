@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\OeeService;
 use Illuminate\Http\Request;
 
 class AndonSystemController extends Controller
