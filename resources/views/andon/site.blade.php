@@ -466,7 +466,9 @@
                         $(`#line-${res[i].mesin_id} .nama-mesin`).html(`${res[i].nama_mesin}`);
                         $(`#line-${res[i].mesin_id} .status-mesin`).html(`${res[i].status}`);
                         $(`#line-${res[i].mesin_id} .time-line`).html(`${live_time}`);
-                        $(`#line-${res[i].mesin_id} #do-number`).val(`${res[i].oee.nomorDo}`);
+                        if (res[i].code != 'mesin_perbaikan') {
+                            $(`#line-${res[i].mesin_id} #do-number`).val(`${res[i].oee.nomorDo}`);
+                        }
                         $(`#line-${res[i].mesin_id} #cycle-time`).val(`${res[i].oee.cycleTime}`);
                         $(`#line-${res[i].mesin_id} #ng`).val(`${res[i].oee.notGood}`);
                         $(`#line-${res[i].mesin_id} #operator`).val(`${res[i].operator}`);
@@ -480,107 +482,135 @@
                         // let chartSimple = ;
                         chartSimple(res[i].mesin_id, gaugeDataSimple);
 
-                        if (res[i].status == 'produksi') {
-                            $(`#line-${res[i].mesin_id} .status-mesin`).html("Running");
-                            $(`#line-${res[i].mesin_id}`).removeClass();
-                            $(`#line-${res[i].mesin_id}`).addClass('card h-100 bg-success text-white');
-                            $(`#line-${res[i].mesin_id} #do-number`).removeClass();
-                            $(`#line-${res[i].mesin_id} #do-number`).addClass(
-                                'text-control bg-success text-white');
-                            $(`#line-${res[i].mesin_id} #header-card`).removeClass();
-                            $(`#line-${res[i].mesin_id} #header-card`).addClass(
-                                'card-header bg-success text-white');
-                            $(`#line-${res[i].mesin_id} #cycle-time`).removeClass();
-                            $(`#line-${res[i].mesin_id} #cycle-time`).addClass(
-                                'text-control bg-success text-white');
-                            $(`#line-${res[i].mesin_id} #ng`).removeClass();
-                            $(`#line-${res[i].mesin_id} #ng`).addClass(
-                                'text-control bg-success text-white');
-                            $(`#line-${res[i].mesin_id} #operator`).removeClass();
-                            $(`#line-${res[i].mesin_id} #operator`).addClass(
-                                'text-control bg-success text-white');
-                            $(`#line-${res[i].mesin_id} #target`).removeClass();
-                            $(`#line-${res[i].mesin_id} #target`).addClass(
-                                'text-control bg-success text-white');
-                            $(`#line-${res[i].mesin_id} #actual`).removeClass();
-                            $(`#line-${res[i].mesin_id} #actual`).addClass(
-                                'text-control bg-success text-white');
-                        } else if (res[i].status == 'downtime') {
-                            $(`#line-${res[i].mesin_id} .status-mesin`).html("Downtime");
-                            $(`#line-${res[i].mesin_id}`).removeClass();
-                            $(`#line-${res[i].mesin_id}`).addClass('card h-100 bg-danger text-white');
-                            $(`#line-${res[i].mesin_id} #do-number`).removeClass();
-                            $(`#line-${res[i].mesin_id} #do-number`).addClass(
-                                'text-control bg-danger text-white');
-                            $(`#line-${res[i].mesin_id} #header-card`).removeClass();
-                            $(`#line-${res[i].mesin_id} #header-card`).addClass(
-                                'card-header bg-danger text-white');
-                            $(`#line-${res[i].mesin_id} #cycle-time`).removeClass();
-                            $(`#line-${res[i].mesin_id} #cycle-time`).addClass(
-                                'text-control bg-danger text-white');
-                            $(`#line-${res[i].mesin_id} #ng`).removeClass();
-                            $(`#line-${res[i].mesin_id} #ng`).addClass(
-                                'text-control bg-danger text-white');
-                            $(`#line-${res[i].mesin_id} #operator`).removeClass();
-                            $(`#line-${res[i].mesin_id} #operator`).addClass(
-                                'text-control bg-danger text-white');
-                            $(`#line-${res[i].mesin_id} #target`).removeClass();
-                            $(`#line-${res[i].mesin_id} #target`).addClass(
-                                'text-control bg-danger text-white');
-                            $(`#line-${res[i].mesin_id} #actual`).removeClass();
-                            $(`#line-${res[i].mesin_id} #actual`).addClass(
-                                'text-control bg-danger text-white');
-                        } else if (res[i].status == 'Finish') {
-                            $(`#line-${res[i].mesin_id} .status-mesin`).html("Finish");
-                            $(`#line-${res[i].mesin_id}`).removeClass();
-                            $(`#line-${res[i].mesin_id}`).addClass('card h-100 bg-primary text-white');
-                            $(`#line-${res[i].mesin_id} #do-number`).removeClass();
-                            $(`#line-${res[i].mesin_id} #do-number`).addClass(
-                                'text-control bg-primary text-white');
-                            $(`#line-${res[i].mesin_id} #header-card`).removeClass();
-                            $(`#line-${res[i].mesin_id} #header-card`).addClass(
-                                'card-header bg-primary text-white');
-                            $(`#line-${res[i].mesin_id} #cycle-time`).removeClass();
-                            $(`#line-${res[i].mesin_id} #cycle-time`).addClass(
-                                'text-control bg-primary text-white');
-                            $(`#line-${res[i].mesin_id} #ng`).removeClass();
-                            $(`#line-${res[i].mesin_id} #ng`).addClass(
-                                'text-control bg-primary text-white');
-                            $(`#line-${res[i].mesin_id} #operator`).removeClass();
-                            $(`#line-${res[i].mesin_id} #operator`).addClass(
-                                'text-control bg-primary text-white');
-                            $(`#line-${res[i].mesin_id} #target`).removeClass();
-                            $(`#line-${res[i].mesin_id} #target`).addClass(
-                                'text-control bg-primary text-white');
-                            $(`#line-${res[i].mesin_id} #actual`).removeClass();
-                            $(`#line-${res[i].mesin_id} #actual`).addClass(
-                                'text-control bg-primary text-white');
+                        if (res[i].code != 'mesin_perbaikan') {
+                            if (res[i].status == 'produksi') {
+                                $(`#line-${res[i].mesin_id} .status-mesin`).html("Running");
+                                $(`#line-${res[i].mesin_id}`).removeClass();
+                                $(`#line-${res[i].mesin_id}`).addClass('card h-100 bg-success text-white');
+                                $(`#line-${res[i].mesin_id} #do-number`).removeClass();
+                                $(`#line-${res[i].mesin_id} #do-number`).addClass(
+                                    'text-control bg-success text-white');
+                                $(`#line-${res[i].mesin_id} #header-card`).removeClass();
+                                $(`#line-${res[i].mesin_id} #header-card`).addClass(
+                                    'card-header bg-success text-white');
+                                $(`#line-${res[i].mesin_id} #cycle-time`).removeClass();
+                                $(`#line-${res[i].mesin_id} #cycle-time`).addClass(
+                                    'text-control bg-success text-white');
+                                $(`#line-${res[i].mesin_id} #ng`).removeClass();
+                                $(`#line-${res[i].mesin_id} #ng`).addClass(
+                                    'text-control bg-success text-white');
+                                $(`#line-${res[i].mesin_id} #operator`).removeClass();
+                                $(`#line-${res[i].mesin_id} #operator`).addClass(
+                                    'text-control bg-success text-white');
+                                $(`#line-${res[i].mesin_id} #target`).removeClass();
+                                $(`#line-${res[i].mesin_id} #target`).addClass(
+                                    'text-control bg-success text-white');
+                                $(`#line-${res[i].mesin_id} #actual`).removeClass();
+                                $(`#line-${res[i].mesin_id} #actual`).addClass(
+                                    'text-control bg-success text-white');
+                            } else if (res[i].status == 'downtime') {
+                                $(`#line-${res[i].mesin_id} .status-mesin`).html("Downtime");
+                                $(`#line-${res[i].mesin_id}`).removeClass();
+                                $(`#line-${res[i].mesin_id}`).addClass('card h-100 bg-danger text-white');
+                                $(`#line-${res[i].mesin_id} #do-number`).removeClass();
+                                $(`#line-${res[i].mesin_id} #do-number`).addClass(
+                                    'text-control bg-danger text-white');
+                                $(`#line-${res[i].mesin_id} #header-card`).removeClass();
+                                $(`#line-${res[i].mesin_id} #header-card`).addClass(
+                                    'card-header bg-danger text-white');
+                                $(`#line-${res[i].mesin_id} #cycle-time`).removeClass();
+                                $(`#line-${res[i].mesin_id} #cycle-time`).addClass(
+                                    'text-control bg-danger text-white');
+                                $(`#line-${res[i].mesin_id} #ng`).removeClass();
+                                $(`#line-${res[i].mesin_id} #ng`).addClass(
+                                    'text-control bg-danger text-white');
+                                $(`#line-${res[i].mesin_id} #operator`).removeClass();
+                                $(`#line-${res[i].mesin_id} #operator`).addClass(
+                                    'text-control bg-danger text-white');
+                                $(`#line-${res[i].mesin_id} #target`).removeClass();
+                                $(`#line-${res[i].mesin_id} #target`).addClass(
+                                    'text-control bg-danger text-white');
+                                $(`#line-${res[i].mesin_id} #actual`).removeClass();
+                                $(`#line-${res[i].mesin_id} #actual`).addClass(
+                                    'text-control bg-danger text-white');
+                            } else if (res[i].status == 'Finish') {
+                                $(`#line-${res[i].mesin_id} .status-mesin`).html("Finish");
+                                $(`#line-${res[i].mesin_id}`).removeClass();
+                                $(`#line-${res[i].mesin_id}`).addClass('card h-100 bg-primary text-white');
+                                $(`#line-${res[i].mesin_id} #do-number`).removeClass();
+                                $(`#line-${res[i].mesin_id} #do-number`).addClass(
+                                    'text-control bg-primary text-white');
+                                $(`#line-${res[i].mesin_id} #header-card`).removeClass();
+                                $(`#line-${res[i].mesin_id} #header-card`).addClass(
+                                    'card-header bg-primary text-white');
+                                $(`#line-${res[i].mesin_id} #cycle-time`).removeClass();
+                                $(`#line-${res[i].mesin_id} #cycle-time`).addClass(
+                                    'text-control bg-primary text-white');
+                                $(`#line-${res[i].mesin_id} #ng`).removeClass();
+                                $(`#line-${res[i].mesin_id} #ng`).addClass(
+                                    'text-control bg-primary text-white');
+                                $(`#line-${res[i].mesin_id} #operator`).removeClass();
+                                $(`#line-${res[i].mesin_id} #operator`).addClass(
+                                    'text-control bg-primary text-white');
+                                $(`#line-${res[i].mesin_id} #target`).removeClass();
+                                $(`#line-${res[i].mesin_id} #target`).addClass(
+                                    'text-control bg-primary text-white');
+                                $(`#line-${res[i].mesin_id} #actual`).removeClass();
+                                $(`#line-${res[i].mesin_id} #actual`).addClass(
+                                    'text-control bg-primary text-white');
+                            } else {
+                                $(`#line-${res[i].mesin_id} .status-mesin`).html("-");
+                                $(`#line-${res[i].mesin_id}`).removeClass();
+                                $(`#line-${res[i].mesin_id}`).addClass('card h-100 bg-dark text-white');
+                                $(`#line-${res[i].mesin_id} #do-number`).removeClass();
+                                $(`#line-${res[i].mesin_id} #do-number`).addClass(
+                                    'text-control bg-dark text-white');
+                                $(`#line-${res[i].mesin_id} #header-card`).removeClass();
+                                $(`#line-${res[i].mesin_id} #header-card`).addClass(
+                                    'card-header bg-dark text-white');
+                                $(`#line-${res[i].mesin_id} #cycle-time`).removeClass();
+                                $(`#line-${res[i].mesin_id} #cycle-time`).addClass(
+                                    'text-control bg-dark text-white');
+                                $(`#line-${res[i].mesin_id} #ng`).removeClass();
+                                $(`#line-${res[i].mesin_id} #ng`).addClass(
+                                    'text-control bg-dark text-white');
+                                $(`#line-${res[i].mesin_id} #operator`).removeClass();
+                                $(`#line-${res[i].mesin_id} #operator`).addClass(
+                                    'text-control bg-dark text-white');
+                                $(`#line-${res[i].mesin_id} #target`).removeClass();
+                                $(`#line-${res[i].mesin_id} #target`).addClass(
+                                    'text-control bg-dark text-white');
+                                $(`#line-${res[i].mesin_id} #actual`).removeClass();
+                                $(`#line-${res[i].mesin_id} #actual`).addClass(
+                                    'text-control bg-dark text-white');
+                            }
                         } else {
                             $(`#line-${res[i].mesin_id} .status-mesin`).html("-");
                             $(`#line-${res[i].mesin_id}`).removeClass();
-                            $(`#line-${res[i].mesin_id}`).addClass('card h-100 bg-dark text-white');
+                            $(`#line-${res[i].mesin_id}`).addClass('card h-100 bg-warning text-white');
                             $(`#line-${res[i].mesin_id} #do-number`).removeClass();
                             $(`#line-${res[i].mesin_id} #do-number`).addClass(
-                                'text-control bg-dark text-white');
+                                'text-control bg-warning text-white');
                             $(`#line-${res[i].mesin_id} #header-card`).removeClass();
                             $(`#line-${res[i].mesin_id} #header-card`).addClass(
-                                'card-header bg-dark text-white');
+                                'card-header bg-warning text-white');
                             $(`#line-${res[i].mesin_id} #cycle-time`).removeClass();
                             $(`#line-${res[i].mesin_id} #cycle-time`).addClass(
-                                'text-control bg-dark text-white');
+                                'text-control bg-warning text-white');
                             $(`#line-${res[i].mesin_id} #ng`).removeClass();
                             $(`#line-${res[i].mesin_id} #ng`).addClass(
-                                'text-control bg-dark text-white');
+                                'text-control bg-warning text-white');
                             $(`#line-${res[i].mesin_id} #operator`).removeClass();
                             $(`#line-${res[i].mesin_id} #operator`).addClass(
-                                'text-control bg-dark text-white');
+                                'text-control bg-warning text-white');
                             $(`#line-${res[i].mesin_id} #target`).removeClass();
                             $(`#line-${res[i].mesin_id} #target`).addClass(
-                                'text-control bg-dark text-white');
+                                'text-control bg-warning text-white');
                             $(`#line-${res[i].mesin_id} #actual`).removeClass();
                             $(`#line-${res[i].mesin_id} #actual`).addClass(
-                                'text-control bg-dark text-white');
+                                'text-control bg-warning text-white');
                         }
+
                     } else {
                         Swal.fire({
                             icon: 'warning',
