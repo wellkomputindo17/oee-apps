@@ -588,7 +588,8 @@
                         let live_time = secondsToDhms(diffSecs);
                         // }
                         $(`#line-${res[i].mesin_id} .nama-mesin`).html(`${res[i].nama_mesin}`);
-                        $(`#line-${res[i].mesin_id} .status-mesin`).html("Maintenance");
+                        $(`#line-${res[i].mesin_id} .status-mesin`).html(
+                            `${res[i].status == 'perbaikan' ? "Maintenance" : -}`);
                         $(`#line-${res[i].mesin_id} .time-line`).html(`${live_time}`);
 
                         $(`#line-${res[i].mesin_id} #operator`).val(`${res[i].operator}`);
