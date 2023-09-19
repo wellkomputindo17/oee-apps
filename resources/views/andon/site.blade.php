@@ -473,19 +473,17 @@
                             $(`#line-${res[i].mesin_id} #actual`).val(`${res[i].oee.actual}`);
                             gaugeDataSimple[0].value = (100 - (res[i].target - res[i].oee.actual) / res[i]
                                 .target * 100).toFixed(2);
+                            chartSimple(res[i].mesin_id, gaugeDataSimple);
                         } else {
                             $(`#line-${res[i].mesin_id} #do-number`).val(`0`);
                             $(`#line-${res[i].mesin_id} #cycle-time`).val(`0`);
                             $(`#line-${res[i].mesin_id} #ng`).val(`0`);
                             $(`#line-${res[i].mesin_id} #target`).val(`0`);
                             $(`#line-${res[i].mesin_id} #actual`).val(`0`);
-                            gaugeDataSimple[0].value = 0;
+                            // gaugeDataSimple[0].value = 0;
                         }
                         $(`#line-${res[i].mesin_id} #operator`).val(`${res[i].operator}`);
 
-
-                        // let chartSimple = ;
-                        chartSimple(res[i].mesin_id, gaugeDataSimple);
 
                         if (res[i].code != 'mesin_perbaikan') {
                             if (res[i].status == 'produksi') {
