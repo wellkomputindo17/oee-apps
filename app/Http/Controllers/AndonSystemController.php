@@ -12,6 +12,7 @@ class AndonSystemController extends Controller
     }
     public function site()
     {
+        OeeService::truncate();
         return view('andon.site');
     }
 }
