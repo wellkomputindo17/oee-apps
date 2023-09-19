@@ -454,7 +454,6 @@
             let channel = Echo.channel('services-oee');
             channel.listen('OeeEvent', function(data) {
                 let res = data.message;
-                console.log(res);
                 for (let i = 0; i < res.length; i++) {
                     if (res[i].msg == 'success' && res[i].code != 'mesin_perbaikan') {
                         let from = new Date(dmyToDate(res[i].time));
