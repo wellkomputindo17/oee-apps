@@ -38,7 +38,7 @@ class PlanDownTimesController extends Controller
         //     ->get();
 
         // dd($tree);
-        $notif = NotifMesin::where('status', 'pending')->get();
+        $notif = NotifMesin::where('status', 'pending')->orWhere('status', 'perbaikan')->get();
 
         return view('master.plan.index', compact('title', 'data', 'notif'));
     }

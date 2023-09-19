@@ -37,7 +37,7 @@ class LineController extends Controller
         }
 
         $title = 'Line';
-        $notif = NotifMesin::where('status', 'pending')->get();
+        $notif = NotifMesin::where('status', 'pending')->orWhere('status', 'perbaikan')->get();
         return view('master.line.index', compact('title', 'notif'));
     }
 

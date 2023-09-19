@@ -46,7 +46,7 @@ class DoController extends Controller
         }
 
         $title = 'DO';
-        $notif = NotifMesin::where('status', 'pending')->get();
+        $notif = NotifMesin::where('status', 'pending')->orWhere('status', 'perbaikan')->get();
         return view('master.do.index', compact('title', 'notif'));
     }
 

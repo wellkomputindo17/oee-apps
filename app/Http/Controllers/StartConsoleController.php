@@ -24,7 +24,7 @@ class StartConsoleController extends Controller
     {
         $title = 'Form Start Console';
 
-        $notif = NotifMesin::where('status', 'pending')->get();
+        $notif = NotifMesin::where('status', 'pending')->orWhere('status', 'perbaikan')->get();
 
 
         return view('console.start.index', compact('title', 'notif'));

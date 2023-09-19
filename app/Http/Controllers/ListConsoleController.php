@@ -20,7 +20,7 @@ class ListConsoleController extends Controller
 
         $title = "List Console Operator";
 
-        $notif = NotifMesin::where('status', 'pending')->get();
+        $notif = NotifMesin::where('status', 'pending')->orWhere('status', 'perbaikan')->get();
 
         return view('console.list.index', compact('title', 'mesin_name', 'mesin_id', 'no_do', 'do_name', 'notif', 'is_plan'));
     }
@@ -29,7 +29,7 @@ class ListConsoleController extends Controller
     {
         if ($request->ajax()) {
             $rtm = OeeService::where('mesin_id', $request->mesin_id)->first();
-           
+
             if ($rtm) {
                 if ($rtm->status == 'running') {
                     $log = LogMesin::with(['realtime_mesin.mesin', 'do'])->where('no_do', $request->no_do)->whereHas('realtime_mesin.mesin', function ($query) use ($request) {

@@ -9,7 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $notif = NotifMesin::where('status', 'pending')->get();
+        $notif = NotifMesin::where('status', 'pending')->orWhere('status', 'perbaikan')->get();
         return view('home.index', compact('notif'));
     }
 }

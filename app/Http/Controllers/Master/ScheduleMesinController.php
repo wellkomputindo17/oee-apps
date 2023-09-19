@@ -38,7 +38,7 @@ class ScheduleMesinController extends Controller
         }
 
         $title = 'Maintenance Schedule Machine';
-        $notif = NotifMesin::where('status', 'pending')->get();
+        $notif = NotifMesin::where('status', 'pending')->orWhere('status', 'perbaikan')->get();
 
         return view('master.sm.index', compact('title', 'notif'));
     }

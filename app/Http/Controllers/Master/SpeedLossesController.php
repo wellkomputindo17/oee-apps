@@ -23,7 +23,7 @@ class SpeedLossesController extends Controller
 
         $data = json_decode(json_encode($data), FALSE);
 
-        $notif = NotifMesin::where('status', 'pending')->get();
+        $notif = NotifMesin::where('status', 'pending')->orWhere('status', 'perbaikan')->get();
         return view('master.speed_loss.index', compact('title', 'data', 'notif'));
     }
 

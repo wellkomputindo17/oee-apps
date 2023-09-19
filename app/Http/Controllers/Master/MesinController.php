@@ -34,7 +34,7 @@ class MesinController extends Controller
         }
 
         $title = 'Machine';
-        $notif = NotifMesin::where('status', 'pending')->get();
+        $notif = NotifMesin::where('status', 'pending')->orWhere('status', 'perbaikan')->get();
         return view('master.mesin.index', compact('title', 'notif'));
     }
 
