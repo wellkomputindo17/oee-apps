@@ -467,12 +467,18 @@
                         $(`#line-${res[i].mesin_id} .time-line`).html(`${live_time}`);
                         if (res[i].code != 'mesin_perbaikan') {
                             $(`#line-${res[i].mesin_id} #do-number`).val(`${res[i].oee.nomorDo}`);
+                            $(`#line-${res[i].mesin_id} #cycle-time`).val(`${res[i].oee.cycleTime}`);
+                            $(`#line-${res[i].mesin_id} #ng`).val(`${res[i].oee.notGood}`);
+                            $(`#line-${res[i].mesin_id} #target`).val(`${res[i].target}`);
+                            $(`#line-${res[i].mesin_id} #actual`).val(`${res[i].oee.actual}`);
+                        } else {
+                            $(`#line-${res[i].mesin_id} #do-number`).val(`0`);
+                            $(`#line-${res[i].mesin_id} #cycle-time`).val(`0`);
+                            $(`#line-${res[i].mesin_id} #ng`).val(`0`);
+                            $(`#line-${res[i].mesin_id} #target`).val(`0`);
+                            $(`#line-${res[i].mesin_id} #actual`).val(`0`);
                         }
-                        $(`#line-${res[i].mesin_id} #cycle-time`).val(`${res[i].oee.cycleTime}`);
-                        $(`#line-${res[i].mesin_id} #ng`).val(`${res[i].oee.notGood}`);
                         $(`#line-${res[i].mesin_id} #operator`).val(`${res[i].operator}`);
-                        $(`#line-${res[i].mesin_id} #target`).val(`${res[i].target}`);
-                        $(`#line-${res[i].mesin_id} #actual`).val(`${res[i].oee.actual}`);
 
                         gaugeDataSimple[0].value = (100 - (res[i].target - res[i].oee.actual) / res[i]
                                 .target * 100)
