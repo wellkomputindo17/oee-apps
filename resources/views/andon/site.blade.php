@@ -582,6 +582,7 @@
 
 
                     } else if (res[i].msg == 'success' && res[i].code == 'mesin_perbaikan') {
+                        console.log(res[i].status);
                         let from = new Date(dmyToDate(res[i].time));
                         let diffSecs = Math.abs((new Date().getTime() - from.getTime()) /
                             1000);
