@@ -595,6 +595,9 @@
                                 `-`);
                         }
 
+                        gaugeDataSimple[0].value = 0;
+                        chartSimple(res[i].mesin_id, gaugeDataSimple);
+
                         if (res[i].status == 'Finish') {
                             $(`#line-${res[i].mesin_id} .status-mesin`).html("Finish");
                             $(`#line-${res[i].mesin_id}`).removeClass();
