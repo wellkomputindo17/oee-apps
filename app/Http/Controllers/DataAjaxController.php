@@ -380,7 +380,7 @@ class DataAjaxController extends Controller
                     DB::commit();
                     return response()->json([
                         'msg' => 'success',
-                        'desc' => "Has this {$rtm->mesin->name} been repaired?"
+                        'desc' => "This {$rtm->mesin->name} has been repaired"
                     ]);
                 }
             } catch (QueryException $th) {
