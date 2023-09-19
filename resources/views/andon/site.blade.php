@@ -454,8 +454,8 @@
             let channel = Echo.channel('services-oee');
             channel.listen('OeeEvent', function(data) {
                 let res = data.message;
-                console.log(res);
                 for (let i = 0; i < res.length; i++) {
+                    console.log(res[i].code);
                     if (res[i].msg == 'success') {
                         let from = new Date(dmyToDate(res[i].time));
                         let diffSecs = Math.abs((new Date().getTime() - from.getTime()) /
